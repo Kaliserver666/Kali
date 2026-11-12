@@ -1,0 +1,1188 @@
+VLADIMIR AI — MASTER ANDROID AGENT DEVELOPMENT SPECIFICATION
+
+Complete Native Android AI Agent — OpenRouter + Genuine MCP + Voice + Android Tools
+
+You are an elite Android engineer, Kotlin architect, AI agent developer, MCP protocol specialist, networking engineer, cybersecurity engineer, and professional UI/UX designer.
+
+Your mission is to BUILD a complete, functional, premium native Android application from zero.
+
+The application name is:
+
+VLADIMIR AI
+
+This is an advanced personal AI agent for Android.
+
+IMPORTANT: I selected the ANDROID platform in Google AI Studio Build Mode.
+
+You MUST generate a native Android application using Kotlin and Jetpack Compose.
+
+DO NOT generate:
+
+- A website.
+- A React application.
+- A PWA.
+- An HTML application.
+- A WebView wrapper.
+- A browser-based imitation of an Android application.
+
+The final result must be a genuine Android project that can be built and installed on an Android phone.
+
+Do not stop after creating a prototype. Implement the actual functionality, test the code, fix build errors, and provide the complete project source.
+
+==================================================
+
+1. PLATFORM AND PROJECT CONSTRAINTS
+   ==================================================
+
+Use the Android project architecture supported by Google AI Studio.
+
+Required:
+
+- Kotlin.
+- Jetpack Compose.
+- Material 3.
+- Native Android APIs.
+- Single Activity architecture.
+- Single Android module, respecting Google AI Studio's project limitations.
+- ViewModel-based state management.
+- Coroutines for asynchronous work.
+- Repository pattern for network and storage operations.
+- Dependency injection only if it can be supported reliably.
+
+Use current stable Android-compatible dependencies.
+
+Do not add unnecessary libraries.
+
+Keep the application modular using Kotlin packages.
+
+Suggested package:
+
+com.vladimir.ai
+
+Suggested modules within the application architecture:
+
+- core
+- data
+- domain
+- network
+- openrouter
+- mcp
+- tools
+- voice
+- memory
+- permissions
+- execution
+- ui
+- settings
+
+Because Google AI Studio Android projects are client-side projects with limited architecture, implement these as packages and components within the supported Android project rather than creating unsupported modules.
+
+Do not invent backend functionality that the Android build environment cannot provide.
+
+If an external backend is necessary, define a secure optional gateway interface and clearly document its deployment requirements.
+
+==================================================
+2. PRODUCT VISION
+
+VLADIMIR AI must behave as an intelligent personal AI agent, not merely a chatbot.
+
+The user should be able to:
+
+- Talk naturally with the assistant.
+- Ask questions.
+- Give instructions.
+- Execute supported tasks.
+- Connect external MCP servers.
+- Discover external tools.
+- Read and manage user-authorized files.
+- Create and edit documents.
+- Search the web through available integrations.
+- Plan multi-step tasks.
+- Remember approved information.
+- Open supported Android applications.
+- Interrupt the assistant.
+- Stop an ongoing operation.
+- See what the agent is doing.
+
+The assistant must distinguish between:
+
+1. Answering a question.
+2. Creating a plan.
+3. Calling a tool.
+4. Executing an action.
+5. Reporting a verified result.
+
+Never claim an operation succeeded unless the actual result confirms success.
+
+==================================================
+3. PREMIUM USER INTERFACE
+
+Create an elegant futuristic interface.
+
+Visual identity:
+
+- Deep black background.
+- Dark charcoal surfaces.
+- Cyan and electric blue accents.
+- Subtle violet highlights.
+- Premium typography.
+- Smooth transitions.
+- Beautiful animations.
+- Professional icons.
+- Rounded cards.
+- Excellent spacing.
+- Modern Material 3 components.
+
+Create these screens:
+
+A. HOME
+
+- VLADIMIR AI branding.
+- Assistant status.
+- Current model.
+- OpenRouter connection status.
+- MCP connection status.
+- Quick action buttons.
+- Recent conversations.
+
+B. CHAT
+
+- User messages.
+- Assistant messages.
+- Streaming responses.
+- Markdown support.
+- Code formatting.
+- Copy response.
+- Regenerate response.
+- Stop generation.
+- Edit and resend.
+- Attach files.
+- Voice input.
+- Model selection.
+
+C. VOICE ASSISTANT
+
+- Large microphone control.
+- Listening indicator.
+- Speaking indicator.
+- Conversation transcript.
+- Stop speaking.
+- Cancel current task.
+- Mute and voice settings.
+
+D. MCP MANAGER
+
+- Add server.
+- Edit server.
+- Delete server.
+- Connect.
+- Disconnect.
+- Test connection.
+- Discover tools.
+- Display connection diagnostics.
+
+E. TOOLS MANAGER
+
+- Available tools.
+- Tool descriptions.
+- Permissions.
+- Execution status.
+- Enable and disable supported tools.
+
+F. MEMORY
+
+- Saved memories.
+- Search memories.
+- Edit memory.
+- Delete memory.
+- Clear memory.
+
+G. SETTINGS
+
+- OpenRouter API key.
+- Model selection.
+- MCP configuration.
+- Voice settings.
+- Permissions.
+- Storage.
+- Privacy.
+- Theme.
+
+All buttons must have functional implementations.
+
+Do not create non-functional decorative controls.
+
+==================================================
+4. OPENROUTER — REAL INTEGRATION
+
+OpenRouter is the primary AI provider.
+
+Official documentation:
+https://openrouter.ai/docs
+
+Implement actual OpenRouter API integration.
+
+Required API functionality:
+
+- Configure API key.
+- Save API key securely.
+- Validate API key.
+- Test connection.
+- Retrieve available models.
+- Search models.
+- Display model information.
+- Select a model.
+- Change model.
+- Send messages.
+- Receive responses.
+- Stream responses.
+- Maintain conversation context.
+- Support tool calling.
+- Handle tool-call responses.
+- Return tool results to the model.
+- Continue the model conversation after tool execution.
+
+Use the correct OpenRouter API endpoint and current request format.
+
+Implement robust networking with:
+
+- HTTPS.
+- Timeouts.
+- Cancellation.
+- Retry policies.
+- Error parsing.
+- Streaming SSE parsing where applicable.
+- Connection state management.
+
+Model discovery must be dynamic.
+
+Do not use a fake hardcoded model catalogue.
+
+If a model does not support tool calling, display that limitation and avoid sending unsupported tool requests.
+
+Support:
+
+- Invalid API keys.
+- Insufficient credits.
+- Rate limits.
+- Server errors.
+- Model unavailable.
+- Network unavailable.
+- Streaming interruption.
+
+IMPORTANT SECURITY REQUIREMENT:
+
+Google AI Studio's native Android project does not provide the same server-side secrets runtime as its web project.
+
+Therefore:
+
+- Never hardcode an OpenRouter API key.
+- Let the user enter their own key.
+- Store it using Android Keystore-backed encryption.
+- Never log the key.
+- Never display the complete saved key.
+- Allow key replacement and deletion.
+- Explain that a key stored on a client device cannot be guaranteed impossible to extract from a sufficiently compromised or reverse-engineered device.
+
+Design an optional user-configured secure proxy/gateway interface for users who want server-side key protection.
+
+Do not invent a hosted proxy or pretend one exists.
+
+==================================================
+5. GENUINE MCP CLIENT
+
+MCP support is a critical feature.
+
+Implement a real Model Context Protocol client.
+
+The user must be able to connect VLADIMIR AI to external MCP servers.
+
+Required functionality:
+
+- Add MCP server.
+- Enter server name.
+- Enter server URL.
+- Configure authentication if required.
+- Edit server.
+- Delete server.
+- Enable and disable server.
+- Connect and disconnect.
+- Test connection.
+- Initialize MCP session.
+- Negotiate protocol version.
+- Exchange client and server capabilities.
+- Discover tools.
+- Retrieve tool descriptions.
+- Retrieve JSON input schemas.
+- Invoke tools.
+- Process tool results.
+- Handle protocol errors.
+- Support multiple servers.
+- Maintain server status.
+- Reconnect when appropriate.
+
+Preferred transport:
+MCP Streamable HTTP.
+
+Also implement:
+Legacy HTTP+SSE transport where supported by the server and protocol version.
+
+Follow the official MCP specification:
+https://modelcontextprotocol.io/specification
+
+Do not implement fake MCP functionality.
+
+Do not treat an ordinary REST API as an MCP server.
+
+Do not mark a server connected until the MCP initialization handshake has actually succeeded.
+
+Do not assume every MCP server exposes the same tools.
+
+Discover the tools dynamically.
+
+==================================================
+6. CRITICAL: FIX LOCAL MCP NETWORK CONNECTION FAILURES
+
+THIS IS THE MOST IMPORTANT NETWORKING REQUIREMENT.
+
+Previous versions of this project encountered:
+
+"Unable to connect to local network addresses."
+
+This issue must be investigated rather than hidden.
+
+Do not automatically reject private network addresses.
+
+Do not block all local IP addresses.
+
+Do not display a generic connection error when a specific diagnostic is available.
+
+The application must correctly distinguish:
+
+A. Android device localhost.
+B. Another device on the same Wi-Fi network.
+C. A remote public MCP server.
+D. A remote backend or gateway.
+E. A desktop computer hosting an MCP service.
+
+Understand these examples:
+
+- 127.0.0.1 means the Android device itself.
+- A private LAN address identifies another device on the local network.
+- A public hostname may identify a remote server.
+- An MCP server running on a desktop is not automatically reachable through Android localhost.
+
+Support user-configured endpoints such as:
+
+- http://127.0.0.1:PORT
+- http://192.168.x.x:PORT
+- http://10.x.x.x:PORT
+- http://172.16.x.x:PORT through 172.31.x.x:PORT
+- https://example-hostname
+
+PORT is a user-provided port, not a fixed value.
+
+Validate URLs carefully.
+
+Never automatically block these private IP ranges merely because they are private.
+
+However, private addresses must not bypass authorization, TLS validation, or network security.
+
+---
+
+6.1 ANDROID NETWORK PERMISSIONS
+
+Implement the correct Android network permissions.
+
+At minimum, evaluate:
+
+android.permission.INTERNET
+
+and the permissions required by the target Android version.
+
+IMPORTANT ANDROID VERSION HANDLING:
+
+Android 17 introduces mandatory local network protection for applications targeting API 37 or higher.
+
+When targeting API 37 or higher:
+
+- Declare android.permission.ACCESS_LOCAL_NETWORK.
+- Request it at runtime before local network communication.
+- Explain why it is required.
+- Handle denial.
+- Handle permission revocation.
+- Show the user how to enable it in system settings.
+
+For target SDK 36 or lower, follow the official Android local network permission guidance. Do not blindly request permissions that are not required for that target.
+
+For Android 16 opt-in testing, account for the documented temporary Nearby Devices permission behavior where relevant.
+
+Official documentation:
+https://developer.android.com/privacy-and-security/local-network-permission
+
+Do not request unrelated permissions.
+
+---
+
+6.2 HTTP AND HTTPS HANDLING
+
+Implement safe network configuration.
+
+Requirements:
+
+- HTTPS by default for remote MCP servers.
+- Correct TLS certificate validation.
+- No global TLS verification bypass.
+- No trust-all certificate manager.
+- No hostname verification bypass.
+- Handle certificate errors clearly.
+
+For HTTP local MCP servers:
+
+- Explain the security implications.
+- Allow only explicitly configured and user-approved local endpoints when technically supported.
+- Do not globally enable unrestricted cleartext traffic as a shortcut.
+- If Android's static network security configuration cannot safely allow an arbitrary user-entered host, explain the limitation and provide a secure HTTPS gateway alternative.
+
+Do not silently downgrade HTTPS to HTTP.
+
+---
+
+6.3 NETWORK DIAGNOSTICS SCREEN
+
+Create a dedicated screen called:
+
+MCP CONNECTION DIAGNOSTICS
+
+Include a button:
+
+TEST CONNECTION
+
+Run real diagnostic checks:
+
+1. URL validation.
+2. Host extraction.
+3. Port validation.
+4. DNS resolution.
+5. Network availability.
+6. Local network permission state.
+7. TCP connection test where appropriate.
+8. HTTP/HTTPS request.
+9. TLS verification.
+10. MCP initialization.
+11. Tool discovery.
+
+Display the actual results.
+
+Possible diagnostic messages:
+
+- Invalid URL.
+- Invalid port.
+- DNS resolution failed.
+- Host unreachable.
+- Connection refused.
+- Connection timed out.
+- Local network permission denied.
+- Cleartext HTTP blocked.
+- TLS certificate invalid.
+- Server returned an unexpected HTTP status.
+- MCP initialization failed.
+- MCP protocol version mismatch.
+- Server reachable but no tools were discovered.
+- MCP connection successful.
+
+Never report successful MCP connectivity merely because the host responded to a ping or TCP connection.
+
+The final successful state requires successful MCP initialization.
+
+---
+
+6.4 NETWORK ENVIRONMENT EXPLANATION
+
+Show an explanation for localhost:
+
+"If the MCP server runs on another computer, 127.0.0.1 points to the Android phone, not that computer."
+
+Help the user understand:
+
+- The server's LAN address.
+- Whether both devices are on the same network.
+- Whether the MCP port is reachable.
+- Whether the firewall permits the connection.
+- Whether the MCP server listens on the correct interface.
+- Whether the server supports the selected transport.
+
+Do not instruct users to expose private services publicly without authentication.
+
+---
+
+6.5 SECURE MCP GATEWAY FALLBACK
+
+If direct connection is impossible, support an optional secure gateway.
+
+Gateway requirements:
+
+- HTTPS.
+- Authentication.
+- Authorized server routing.
+- Secure credential handling.
+- Request validation.
+- Error propagation.
+- No unrestricted public relay.
+- Clear gateway status.
+
+Because the native Android project is client-side only, implement the Android gateway client and configuration interface.
+
+Do not pretend to host a gateway inside the Android APK.
+
+Provide a separate gateway deployment specification only if needed.
+
+==================================================
+7. COMPLETE TOOL REGISTRY
+
+Build a real modular tool registry.
+
+Each tool must contain:
+
+- Name.
+- Description.
+- JSON input schema.
+- Required permissions.
+- Execution implementation.
+- Result structure.
+- Error handling.
+- Logging.
+- Approval requirements.
+
+The AI must be able to inspect the available tools and request their execution.
+
+Implement the following tools where Android and the execution environment genuinely support them.
+
+---
+
+7.1 FILE AND DOCUMENT TOOLS
+
+- read_file
+- write_file
+- patch_file
+- append_file
+- list_files
+- search_files
+- file_metadata
+- delete_file
+- move_file
+- copy_file
+- create_directory
+
+Use Android Storage Access Framework.
+
+Support:
+
+- User-selected files.
+- User-selected directories.
+- App-private storage.
+- Persistable URI permissions where supported.
+- File metadata.
+- Text extraction from supported file types.
+
+Do not promise unrestricted access to all Android storage.
+
+Require confirmation before:
+
+- Deleting files.
+- Overwriting files.
+- Moving important files.
+
+---
+
+7.2 EXECUTION TOOLS
+
+- shell
+- run_python
+- run_script
+- sandbox_run
+
+Implement only where a genuine safe execution environment exists.
+
+Android's application sandbox must be respected.
+
+Do not require root.
+
+Do not promise unrestricted access to the operating system.
+
+For execution:
+
+- Use an isolated restricted runtime where available.
+- Apply timeouts.
+- Apply output limits.
+- Validate inputs.
+- Restrict file access.
+- Log executions.
+- Require approval for sensitive operations.
+
+If Python or shell execution is unavailable inside the app, show the tool as unavailable or provide an optional authenticated remote execution gateway.
+
+Never fake execution results.
+
+---
+
+7.3 WEB AND SEARCH TOOLS
+
+- web_search
+- web_fetch
+- web_scrape
+- browser_open
+- browser_click
+- browser_type
+- browser_screenshot
+- download_file
+- extract_text
+
+Use real services or approved integrations.
+
+Use Android browser intents for opening external pages where appropriate.
+
+Do not claim full control over other applications or arbitrary websites.
+
+Require confirmation before submitting forms or publishing information.
+
+---
+
+7.4 THINKING AND MEMORY TOOLS
+
+- plan_create
+- plan_update
+- task_decompose
+- memory_save
+- memory_recall
+- memory_search
+- context_summarize
+- delegate_task
+
+Implement:
+
+- Task decomposition.
+- Step tracking.
+- Persistent memory.
+- Memory search.
+- Conversation summarization.
+- Task continuation.
+- Delegation only when a genuine delegate service exists.
+
+Memory must be editable and deletable by the user.
+
+---
+
+7.5 SAFETY AND CONTROL TOOLS
+
+- request_approval
+- check_permissions
+- validate_input
+- log_action
+
+Sensitive actions require explicit approval.
+
+Examples:
+
+- Delete files.
+- Overwrite files.
+- Send messages.
+- Change settings.
+- Execute sensitive commands.
+- Upload private documents.
+
+The user must be able to cancel pending actions.
+
+---
+
+7.6 MCP AND API TOOLS
+
+- mcp_list_tools
+- mcp_call
+- api_request
+
+Connect to actual MCP servers and authorized APIs.
+
+Validate:
+
+- URL.
+- Authentication.
+- Inputs.
+- Server identity where possible.
+- Tool schema.
+- Permissions.
+
+Prevent unauthorized access to internal services.
+
+---
+
+7.7 UTILITY TOOLS
+
+- get_time
+- calculate
+- retry
+
+Add other genuinely useful tools when they can be implemented reliably.
+
+==================================================
+8. AI AGENT LOOP
+
+Implement a real agent execution loop.
+
+Workflow:
+
+1. Receive user request.
+2. Understand intent.
+3. Load relevant conversation context.
+4. Identify available tools.
+5. Choose the selected OpenRouter model.
+6. Create a task plan when necessary.
+7. Request user approval when required.
+8. Execute the requested tool.
+9. Validate the result.
+10. Return the result to the AI.
+11. Continue if more steps are required.
+12. Deliver the final answer.
+
+Requirements:
+
+- Multiple tool calls where supported.
+- Maximum iteration limits.
+- Loop prevention.
+- Cancellation.
+- Timeouts.
+- Error recovery.
+- Progress updates.
+- Structured tool results.
+
+Never let the AI execute arbitrary unvalidated commands.
+
+Never report success without verified output.
+
+==================================================
+9. VOICE ASSISTANT
+
+Create a natural voice interaction experience.
+
+The user should be able to speak to VLADIMIR and hear its responses.
+
+Implement:
+
+- Speech recognition.
+- Text-to-speech.
+- Microphone controls.
+- Listening indicator.
+- Speaking indicator.
+- Stop speaking.
+- Interrupt response.
+- Cancel current task.
+- Conversation transcript.
+- Voice settings.
+
+Support:
+
+- English.
+- Arabic.
+- Moroccan Darija where the selected speech engine supports it.
+
+Example voice commands:
+
+"Vladimir, open the application."
+
+"Vladimir, read this document."
+
+"Vladimir, search the web."
+
+"Vladimir, connect to my MCP server."
+
+"Vladimir, stop."
+
+"Vladimir, cancel the current task."
+
+"Vladimir, explain what you are doing."
+
+Implement interruption behavior.
+
+If the user says stop:
+
+- Stop speech playback immediately.
+- Cancel the active network generation when possible.
+- Cancel the current tool operation when supported.
+- Mark the task as cancelled.
+- Do not continue executing later steps.
+
+Use clear microphone permission prompts.
+
+Do not secretly record audio.
+
+Do not keep the microphone active in the background without an explicit user-controlled foreground service and persistent notification.
+
+Do not promise always-on wake-word detection unless it is actually implemented and supported.
+
+==================================================
+10. ANDROID APP INTEGRATION
+
+Implement supported Android interactions using native APIs.
+
+Features:
+
+- Open installed applications using package intents.
+- Open supported Android settings screens.
+- Share content.
+- Create notifications with appropriate permission.
+- Select files.
+- Save authorized files.
+- Read authorized files.
+- Launch supported external activities.
+- Use supported system APIs.
+
+Do not claim unrestricted control over every installed application.
+
+Do not bypass Android security.
+
+Do not require root.
+
+AccessibilityService may only be added if genuinely necessary.
+
+If used:
+
+- Explain its purpose.
+- Require manual activation by the user.
+- Provide clear disclosure.
+- Respect Android restrictions.
+- Provide a way to disable it.
+- Never use it for secret monitoring.
+
+==================================================
+11. MEMORY AND CONVERSATION STORAGE
+
+Implement persistent local storage.
+
+Store:
+
+- Conversation history.
+- Message timestamps.
+- Selected model.
+- User settings.
+- Approved memories.
+- MCP server configurations.
+- Tool preferences.
+- Task history.
+
+Security:
+
+- Protect sensitive values.
+- Do not save API keys in ordinary conversation records.
+- Do not save passwords as memories.
+- Allow the user to inspect and delete stored information.
+
+Provide:
+
+- Search conversations.
+- Rename conversation.
+- Delete conversation.
+- Export conversation where supported.
+- Clear history.
+- Memory management.
+
+Use Room or another compatible local persistence solution if supported.
+
+==================================================
+12. PERMISSIONS CENTER
+
+Create a clear permissions center.
+
+Potential permissions:
+
+- Internet.
+- Microphone.
+- Notifications.
+- Local network access when required by the target Android version.
+- User-authorized file access.
+- Camera only if an actual feature requires it.
+- Accessibility only if genuinely required and explicitly enabled.
+
+Rules:
+
+- Request permissions only when needed.
+- Explain each permission.
+- Handle denial gracefully.
+- Handle revocation.
+- Never claim access when permission is denied.
+- Do not request unrelated permissions.
+- Provide links to the appropriate Android settings screens when needed.
+
+==================================================
+13. TASK PLANNER AND ACTIVITY PANEL
+
+Create a task execution screen.
+
+Display:
+
+- Task name.
+- User instruction.
+- Current step.
+- Completed steps.
+- Pending steps.
+- Tool currently running.
+- Execution status.
+- Errors.
+- Approval requests.
+- Final verified result.
+
+Controls:
+
+- Stop.
+- Cancel.
+- Retry.
+- Resume where supported.
+
+Keep the user informed throughout the task.
+
+==================================================
+14. ERROR HANDLING AND LOGGING
+
+Implement structured error handling.
+
+Handle:
+
+- OpenRouter errors.
+- Authentication failures.
+- Rate limits.
+- Insufficient credits.
+- Streaming failures.
+- MCP initialization errors.
+- MCP protocol errors.
+- Local network failures.
+- DNS failures.
+- TLS errors.
+- File permission failures.
+- Tool execution failures.
+- Voice recognition errors.
+- Storage errors.
+
+Provide readable messages.
+
+Do not expose API keys, passwords, authentication tokens, or private file contents in logs.
+
+Add a diagnostic export option that removes sensitive data before export.
+
+==================================================
+15. TESTING AND VERIFICATION
+
+Do not assume generated code is correct.
+
+Run the available build and validation tools.
+
+Fix all actual compilation errors.
+
+Test the application in the Android emulator.
+
+Test on a physical Android device when possible.
+
+Required tests:
+
+OPENROUTER:
+
+- Configure API key.
+- Test API connection.
+- Retrieve models.
+- Select model.
+- Send a message.
+- Receive streaming output.
+- Test invalid key handling.
+- Test model without tool support.
+
+MCP:
+
+- Add MCP server.
+- Validate URL.
+- Connect.
+- Initialize protocol.
+- Discover tools.
+- Execute a real tool.
+- Handle errors.
+- Test multiple servers.
+- Test local IP addresses.
+- Test localhost behavior.
+- Test network permission behavior.
+- Test gateway fallback if implemented.
+
+VOICE:
+
+- Request microphone permission.
+- Start recognition.
+- Speak to the assistant.
+- Hear spoken output.
+- Interrupt output.
+- Stop active generation.
+
+FILES:
+
+- Select a file.
+- Read authorized content.
+- Write a file.
+- Edit a file.
+- Confirm deletion.
+
+ANDROID:
+
+- Install.
+- Launch.
+- Navigate.
+- Request permissions.
+- Open supported applications.
+- Handle denied permissions.
+
+Report each test as:
+
+- PASSED.
+- FAILED.
+- PARTIALLY TESTED.
+- NOT TESTED.
+- UNSUPPORTED.
+
+Never fabricate test results.
+
+==================================================
+16. AIDE PRO AND SOURCE PROJECT
+
+The user wants source code that can be inspected and developed further.
+
+Provide:
+
+- Complete Kotlin source.
+- Compose UI source.
+- Android manifest.
+- Gradle build configuration.
+- Resources.
+- Dependency information.
+- Setup guide.
+- Build guide.
+
+IMPORTANT:
+
+Google AI Studio Android projects use Kotlin and Jetpack Compose.
+
+Do not convert the project into Java/XML just to claim compatibility.
+
+AIDE Pro compatibility must be tested, not assumed.
+
+If AIDE Pro cannot build the generated Gradle or Compose project:
+
+- Explain the exact incompatibility.
+- Preserve the original source.
+- Provide the complete ZIP.
+- Explain how to continue in a compatible Android development environment.
+
+==================================================
+17. FINAL DELIVERY
+
+Deliver the real project.
+
+Required:
+
+1. Working Android application.
+2. Complete Kotlin source code.
+3. Downloadable source ZIP.
+4. Installable APK when the platform supports direct APK export.
+5. Otherwise, provide the supported Install on Device workflow.
+6. Installation guide.
+7. OpenRouter configuration guide.
+8. MCP server configuration guide.
+9. Local network troubleshooting guide.
+10. Permissions guide.
+11. Testing report.
+12. Known limitations.
+
+Do not invent download links.
+
+Do not claim an APK exists if no APK was generated.
+
+Use Google AI Studio's available Android export and installation features.
+
+==================================================
+18. DEVELOPMENT EXECUTION RULES
+
+Build in stages, but continue implementing the complete application.
+
+STAGE 1:
+Create the native Kotlin Android project and premium interface.
+
+STAGE 2:
+Implement local storage and settings.
+
+STAGE 3:
+Implement OpenRouter.
+
+STAGE 4:
+Implement streaming chat and model selection.
+
+STAGE 5:
+Implement the MCP client.
+
+STAGE 6:
+Implement local network diagnostics and permissions.
+
+STAGE 7:
+Implement tool discovery and execution.
+
+STAGE 8:
+Implement voice interaction.
+
+STAGE 9:
+Implement memory and planning.
+
+STAGE 10:
+Implement supported Android integrations.
+
+STAGE 11:
+Test, fix, and verify.
+
+STAGE 12:
+Export source ZIP and prepare installation.
+
+Do not stop after writing a plan.
+
+Do not return only screenshots.
+
+Do not replace real functionality with mock data.
+
+Do not remove requirements silently.
+
+If a feature cannot be implemented in the current environment, explain exactly why and provide the best functional alternative.
+
+FINAL OBJECTIVE
+
+Build VLADIMIR AI as a real, premium, intelligent native Android personal AI agent.
+
+The most important priorities are:
+
+1. Reliable OpenRouter integration.
+2. Genuine MCP protocol support.
+3. Solving local MCP network connection failures through proper diagnostics and Android permissions.
+4. Dynamic MCP tool discovery and execution.
+5. A complete and modular tool system.
+6. Safe file management.
+7. Supported Android application interaction.
+8. Natural voice conversation.
+9. Immediate stop and cancellation behavior.
+10. Persistent memory and task planning.
+11. Premium Android design.
+12. Complete source code and installable Android deliverable.
+
+Build the actual application now.
+
+PROJECT NAME: VLADIMIR AI
+
+PLATFORM: NATIVE ANDROID
+
+LANGUAGE: KOTLIN
+
+UI: JETPACK COMPOSE
+
+PRIMARY AI PROVIDER: OPENROUTER
+
+INTEGRATION PROTOCOL: MCP
+
+FINAL GOAL: A REAL ANDROID AI AGENT, NOT A WEB APP OR A DEMONSTRATION.

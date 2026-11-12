@@ -1,0 +1,6 @@
+{
+  "name": "VLADIMIR AI",
+  "description": "Advanced native Android personal AI agent with OpenRouter, genuine Model Context Protocol (MCP), voice assistant, local network diagnostics, and Android tool execution.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
